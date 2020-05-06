@@ -1,0 +1,19 @@
+
+.custom {
+  background-color: #F5F7FB;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 40px 0 rgba(0,0,0,.1);
+
+  
+}
+
+body {
+  background-image: url("../images/sacareamap.png");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.custom-panel {
+  padding: 0 90px;
+}
+
