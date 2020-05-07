@@ -3,133 +3,187 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap" rel="stylesheet">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse"
+            data-target="#myNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- sidebar -->
+                    <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+                        <a href="#"
+                            class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Weather</a>
+                        <div class="bottom-border pb-3">
+                            <a href="#" class="nav-link text-white p-3 mb-2"><i class="fas fa-map-marker-alt"></i>
+                                Recent Searches</a>
+                        </div>
+                        <ul class="navbar-nav flex-column mt-4">
+                            <li class="nav-item"><a href="#"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link current">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                        </ul>
 
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="row my-4">
-                </div>
-            </div>
-        </nav>
-    </header>
+                    </div>
+                    <!-- end sidebar -->
 
-    <div class="container-fluid custom-panel">
-
-        <div class="row-fluid">
-
-            <div class="col-xs-12 col-lg-12 px-0 heading">
-                <nav class="navbar p-4 border-bottom"></nav>
-                <div class="container-fluid">
-
-                    <div class="row">
-
-                        <div class="col-xs-2 col-lg-2">
-                            <div class="row side" id="search-history">
-
-                                <div class="sidebar">
-
-                                    <form class="form-inline">
-                                        <input class="form-control mr-sm-2" type="search"
-                                            placeholder="Search for Places" aria-label="Search">
-                                        <button class="btn btn-outline-primary" type="submit"><i
-                                                class="fas fa-search-location"></i></button>
-                                    </form>
-                                    <div style="height:700px; clear:both;"></div>
+                    <!-- top nav -->
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
+                            </div>
+                            <div class="col-md-3">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control search-input"
+                                            placeholder="Search for Places...">
+                                        <button type="button" class="btn btn-light search-button"><i
+                                                class="fas fa-search text-primary"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <h4 id="currentDay" class="text-light ml-md-auto mb-0"></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> °C
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option2" autocomplete="off"> °F
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-10 col-lg-10 main">
-                            <div class="container pt-5">
-                                <div class="row side">
-                                    <div class="col-xs-12 col-lg-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Current Conditions</h5>
-                                            </div>
 
-                                            <div class="card-body conditions"></div>
+                    </div>
+                    <!-- end top nav -->
+                </div>
+            </div>
+        </div>
+    </nav>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-lg-9">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Hourly Forecast</h5>
-                                            </div>
-
-                                            <div class="card-body forecast"></div>
-                                        </div>
-                                    </div>
+    <!-- cards -->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                    <div class="row pt-md-5 mt-md-3 mb-5">
+                        <div class="col-sm-3 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>Current Conditions</h5>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Temperature</h5>
-                                            </div>
-
-                                            <div class="card-body temp"></div>
-                                        </div>
-                                    </div>
+                                <div class="card-body conditions">
+                                    Test
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-lg-5">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Today</h5>
-                                            </div>
-
-                                            <div class="card-body today"></div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-lg-3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Wind</h5>
-                                            </div>
-
-                                            <div class="card-body wind"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-lg-4">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Humidity</h5>
-                                            </div>
-
-                                            <div class="card-body humidity"></div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>5 Day Forecast</h5>
                                 </div>
-
+                                <div class="card-body forecast">
+                                    Test
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+    </section>
 
 
-    <nav class="navbar-nav fixed-bottom navbar-expand-sm navbar-custom pt-4">
-        <div class="container text-center">
-            <div class="container text-dark">
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                    <div class="row mb-5">
 
+
+                        <div class="col-sm-12 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>Temperature</h5>
+                                </div>
+                                <div class="card-body temp">
+                                    Test
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                    <div class="row mb-5">
+                        <div class="col-sm-5 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>Today</h5>
+                                </div>
+                                <div class="card-body today">
+                                    Test
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>Wind</h5>
+                                </div>
+                                <div class="card-body wind">
+                                    Test
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 p-2">
+                            <div class="card card-common">
+                                <div class="card-header">
+                                    <h5>Humidity</h5>
+                                </div>
+                                <div class="card-body humidity">
+                                    Test
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end cards -->
 
 
 
@@ -137,8 +191,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
