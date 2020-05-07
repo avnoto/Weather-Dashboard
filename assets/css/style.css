@@ -17,3 +17,10 @@ body {
   padding: 0 90px;
 }
 
+.sidebar {
+  border-right: 1px solid #CACACA;
+}
+
+.main {
+  padding: 0 0px;
+}
