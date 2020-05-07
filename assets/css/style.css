@@ -1,9 +1,6 @@
 
-.custom {
-  background-color: #F5F7FB;
-  border-radius: 10px !important;
-  box-shadow: 0 10px 40px 0 rgba(0,0,0,.1);
-
+.heading {
+  background-color: #FFFFFF;
   
 }
 
@@ -14,13 +11,35 @@ body {
 }
 
 .custom-panel {
-  padding: 0 90px;
+  padding: 0 200px;
+  border-radius: 10px !important;
+  
+
 }
 
 .sidebar {
-  border-right: 1px solid #CACACA;
+  border-right: 1px solid lightgrey;
+ 
+  background-color: #F6F8FC;
+
+}
+
+
+.card-header {
+  background-color: #FFFFFF;
 }
 
 .main {
+  background-color: #F6F8FC;
   padding: 0 0px;
 }
+
+.card-body {
+  background-color: #FCFBFF;
+}
+
+.side {
+  display: block;
+}
+
+

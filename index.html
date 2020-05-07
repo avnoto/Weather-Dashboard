@@ -27,36 +27,37 @@
 
         <div class="row-fluid">
 
-            <div class="col-xs-12 col-lg-12 px-0 custom">
+            <div class="col-xs-12 col-lg-12 px-0 heading">
                 <nav class="navbar p-4 border-bottom"></nav>
                 <div class="container-fluid">
 
                     <div class="row">
 
-                        <div class="col-xs-3 col-lg-3">
-                            <div class="row">
+                        <div class="col-xs-2 col-lg-2">
+                            <div class="row side" id="search-history">
 
                                 <div class="sidebar">
 
                                     <form class="form-inline">
                                         <input class="form-control mr-sm-2" type="search"
                                             placeholder="Search for Places" aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                        <button class="btn btn-outline-primary" type="submit"><i
+                                                class="fas fa-search-location"></i></button>
                                     </form>
-                                    <div style="height:700px; width:100%; clear:both;"></div>
+                                    <div style="height:700px; clear:both;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-9 col-lg-9 main">
+                        <div class="col-xs-10 col-lg-10 main">
                             <div class="container pt-5">
-                                <div class="row">
+                                <div class="row side">
                                     <div class="col-xs-12 col-lg-3">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5>Current Conditions</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body conditions"></div>
 
                                         </div>
                                     </div>
@@ -66,7 +67,7 @@
                                                 <h5>Hourly Forecast</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body forecast"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +78,7 @@
                                                 <h5>Temperature</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body temp"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +89,7 @@
                                                 <h5>Today</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body today"></div>
 
                                         </div>
                                     </div>
@@ -98,7 +99,7 @@
                                                 <h5>Wind</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body wind"></div>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-lg-4">
@@ -107,7 +108,7 @@
                                                 <h5>Humidity</h5>
                                             </div>
 
-                                            <div class="card-body"></div>
+                                            <div class="card-body humidity"></div>
                                         </div>
                                     </div>
                                 </div>
