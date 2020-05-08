@@ -26,7 +26,14 @@ $(document).ready(function() {
             }).then(function(response) {
                 console.log(response);
 
-        
+                $(".speed").text("Speed: " + response.wind.speed + " mph");
+                $(".direction").text("Direction : " + response.wind.deg + "°");
+                $(".humidity").text("Humidity: " + response.main.humidity);
+                $(".cityInfo").text(response.name + ", " + response.sys.country)
+
+                var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+                $(".temp").text("Temperature (°F) " + tempF.toFixed(2));
 
             });
     }

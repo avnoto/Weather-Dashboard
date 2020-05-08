@@ -27,10 +27,9 @@
                     <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
                         <a href="#"
                             class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Weather</a>
-                        <div class="bottom-border pb-3">
-                            <a href="#" class="nav-link text-white p-3 mb-2"><i class="fas fa-map-marker-alt"></i>
-                                Recent Searches</a>
-                        </div>
+                        <p class="lead text-white p-3 mb-2"><i class="fas fa-map-marker-alt"></i>Recent
+                            Searches</a>
+                        </p>
                         <ul class="navbar-nav flex-column mt-4">
                             <li class="nav-item"><a href="#"
                                     class="nav-link text-white p-3 mb-2 sidebar-link current">City</a>
@@ -43,7 +42,16 @@
                             </li>
                             <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
                             </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
+                            </li>
                         </ul>
+                        <h4 class="text-white p-3 mt-5 top-border cityInfo"><i class="fas fa-map-marker-alt"></i> City
+                            Info</a>
+                        </h4>
 
                     </div>
                     <!-- end sidebar -->
@@ -57,7 +65,7 @@
                             <div class="col-md-3">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control search-input" id="userInput"
+                                        <input type="text" class="form-control search-input mr-3" id="userInput"
                                             placeholder="Search for Places...">
                                         <button type="button" class="btn btn-light search-button" id="submitWeather"><i
                                                 class="fas fa-search text-primary"></i></button>
@@ -65,26 +73,26 @@
                                 </form>
                             </div>
                             <div class="col-md-3">
-                                <h4 id="currentDay" class="text-light ml-md-auto mb-0"></h4>
+                                <h4 id="currentDay" class="text-light ml-md-auto mb-0 pl-5"></h4>
                             </div>
                             <div class="col-md-3">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
+                                <div class="btn-group btn-group-toggle pl-5" data-toggle="buttons">
+                                    <label class="btn btn-primary active degrees">
                                         <input type="radio" name="options" id="option1" autocomplete="off" checked> °C
                                     </label>
-                                    <label class="btn btn-primary">
+                                    <label class="btn btn-primary degrees">
                                         <input type="radio" name="options" id="option2" autocomplete="off"> °F
                                     </label>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <!-- end top nav -->
                 </div>
             </div>
         </div>
     </nav>
+    <!-- city name -->
 
     <!-- cards -->
     <section>
@@ -102,7 +110,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-9 p-2">
+                        <div class="col-sm-1 p-2">
+                        </div>
+                        <div class="col-sm-7 p-2">
                             <div class="card card-common">
                                 <div class="card-header">
                                     <h5>5 Day Forecast</h5>
@@ -118,15 +128,12 @@
         </div>
     </section>
 
-
     <section>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                     <div class="row mb-5">
-
-
-                        <div class="col-sm-12 p-2">
+                        <div class="col-sm-11 p-2">
                             <div class="card card-common">
                                 <div class="card-header">
                                     <h5>Temperature</h5>
@@ -147,7 +154,7 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                     <div class="row mb-5">
-                        <div class="col-sm-5 p-2">
+                        <div class="col-sm-3 p-2">
                             <div class="card card-common">
                                 <div class="card-header">
                                     <h5>Today</h5>
@@ -157,17 +164,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-1 p-2">
+                        </div>
                         <div class="col-sm-3 p-2">
                             <div class="card card-common">
                                 <div class="card-header">
                                     <h5>Wind</h5>
                                 </div>
                                 <div class="card-body wind">
-                                    Test
+                                    <P class="speed"></P>
+                                    <p class="direction"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 p-2">
+                        <div class="col-sm-1 p-2">
+                        </div>
+                        <div class="col-sm-3 p-2">
                             <div class="card card-common">
                                 <div class="card-header">
                                     <h5>Humidity</h5>
@@ -191,7 +203,6 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto fixed-bottom">
                     <div class="row border-top pt-3">
-
                         <div class="col-lg-12 text-center">
                             <p>&copy; 2020 Copyright. Made with <i class="fas fa-heart text-danger"></i> by Alexandra
                                 Noto</p>
