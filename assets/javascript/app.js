@@ -28,12 +28,18 @@ $(document).ready(function() {
 
                 $(".speed").text("Speed: " + response.wind.speed + " mph");
                 $(".direction").text("Direction : " + response.wind.deg + "°");
-                $(".humidity").text("Humidity: " + response.main.humidity);
-                $(".cityInfo").text(response.name + ", " + response.sys.country)
+                $(".humidity").text("Humidity: " + response.main.humidity + "%");
+                $(".cityInfo").text(response.name + ", " + response.sys.country);
+                $(".sunrise").text("Sunrise " + response.sys.sunrise);
+                $(".sunset").text("Sunset " + response.sys.sunset);
+                $(".currentSky").text(response.weather[0].main);
+                
 
                 var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+                var feelsLikeTemp = (response.main.feels_like - 273.15) * 1.80 + 32;
 
-                $(".temp").text("Temperature (°F) " + tempF.toFixed(2));
+                $(".currentTemp").text(tempF.toFixed(2) + "°F");
+                $(".feelsLike").text("Feels like " + feelsLikeTemp.toFixed(2) + "°F");
 
             });
     }

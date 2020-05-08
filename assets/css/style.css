@@ -48,6 +48,7 @@ body {
 background: transparent;
 border: none;
 border-radius: 0;
+color: #eee;
 border-bottom: 2px solid #999;
 transition: all .4s;
 }
