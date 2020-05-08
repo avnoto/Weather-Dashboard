@@ -26,7 +26,8 @@
                     <!-- sidebar -->
                     <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
                         <a href="#"
-                            class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Weather</a>
+                            class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Weather
+                            Dashboard</a>
                         <p class="lead text-white p-3 mb-2"><i class="fas fa-map-marker-alt"></i>Recent
                             Searches</a>
                         </p>
@@ -49,9 +50,11 @@
                             <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">City</a>
                             </li>
                         </ul>
-                        <h4 class="text-white p-3 mt-5 top-border cityInfo"><i class="fas fa-map-marker-alt"></i> City
-                            Info</a>
-                        </h4>
+                        <div class="text-white p-3 mt-5 top-border">
+                            <i class="fas fa-map-pin pr-2"></i>
+                            <h4 class="cityInfo d-inline"> City Info</h4>
+                        </div>
+
 
                     </div>
                     <!-- end sidebar -->
@@ -60,17 +63,20 @@
                     <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
                         <div class="row align-items-center">
                             <div class="col-md-3">
-                                <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
-                            </div>
-                            <div class="col-md-3">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control search-input mr-3 pl-0" id="userInput"
-                                            placeholder="Search for Places...">
+                                        <input type="text" class="form-control search-input mr-3 pl-0"
+                                            autocomplete="off" id="userInput" placeholder="Search for Places...">
                                         <button type="button" class="btn btn-light search-button" id="submitWeather"><i
                                                 class="fas fa-search text-primary"></i></button>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="col-md-3">
+                                <p class="text-light mb-0 d-inline mr-3">Get Current Location</p>
+                                <button type="button" class="btn btn-light search-location" id="submitLocation"><i
+                                        class="fas fa-location-arrow text-primary"></i></button>
+
                             </div>
                             <div class="col-md-3">
                                 <h4 id="currentDay" class="text-light ml-md-auto mb-0 pl-5"></h4>
@@ -78,7 +84,8 @@
                             <div class="col-md-3">
                                 <div class="btn-group btn-group-toggle pl-5" data-toggle="buttons">
                                     <label class="btn btn-primary active degrees">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> °C
+                                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                        °C
                                     </label>
                                     <label class="btn btn-primary degrees">
                                         <input type="radio" name="options" id="option2" autocomplete="off"> °F

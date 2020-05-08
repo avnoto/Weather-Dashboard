@@ -56,6 +56,7 @@ transition: all .4s;
 .search-input:focus {
   background: transparent;
   box-shadow: none;
+  color: #eee;
   border-bottom: 2px solid light;
 }
 
@@ -104,4 +105,20 @@ transition: all .4s;
 
 .fa-map-marker-alt {
   margin-right: 10px;
+}
+
+.search-location {
+  border-radius: 50%;
+  padding: 10px 16px;
+  transition: all .4s;
+}
+
+.search-location:hover {
+  background-color: #eee;
+  transform: translateY(-1px);
+  
+}
+
+.fa-map-pin {
+  font-size: 20px;
 }
