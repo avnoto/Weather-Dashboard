@@ -18,7 +18,7 @@ $(document).ready(function() {
 
         var city = $("#userInput").val();
 
-        var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
             $.ajax({
                 url: queryURL,
@@ -35,8 +35,8 @@ $(document).ready(function() {
             
 
 
-     $("#sumbitWeather").on("click", function(event) {
-
+     $(".search-button").on("click", function(event) {
+        console.log("click");
         event.preventDefault();
 
         var inputCity = $("#userInput").val().trim();
