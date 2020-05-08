@@ -142,6 +142,18 @@ $(document).ready(function() {
 
     }
 
+    $(".nav-link").on("click", function() {
+        console.log("click");
+
+        var links = $(".nav-link");
+
+        for (var i = 0; i < links.length; i++) {
+            $(links[i]).removeClass("current");
+            
+        }
+
+        $(this).addClass("current");
+    });
 
 
 
