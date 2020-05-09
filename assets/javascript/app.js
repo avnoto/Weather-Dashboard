@@ -72,7 +72,7 @@ $(document).ready(function() {
                         //weather icon ids in the api's json matches with .png names in icons folder
                         var weatherIcon= response.weather[0].icon;
                         var iconEl = $(".weather-icon");
-                        iconEl.html($(`<img src="/assets/images/icons/${weatherIcon}.png"/>`));
+                        iconEl.html($(`<img src="../assets/images/icons/${weatherIcon}.png"/>`));
 
                         //grabbing lat and lon coordinates from this api call to use for next api call
                         var latitude = response.coord.lat;
@@ -97,7 +97,7 @@ $(document).ready(function() {
 
                             var weatherIcon1= response.daily[1].weather[0].icon;
                             var iconEl1 = $(".weather-icon1");
-                            iconEl1.html($(`<img src="/assets/images/icons/${weatherIcon1}.png"/>`));
+                            iconEl1.html($(`<img src="../images/icons/${weatherIcon1}.png"/>`));
 
                             var weatherIcon2= response.daily[2].weather[0].icon;
                             var iconEl2 = $(".weather-icon2");
