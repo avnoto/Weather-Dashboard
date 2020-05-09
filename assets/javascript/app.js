@@ -97,7 +97,7 @@ $(document).ready(function() {
 
                             var weatherIcon1= response.daily[1].weather[0].icon;
                             var iconEl1 = $(".weather-icon1");
-                            iconEl1.html($(`<img src="../images/icons/${weatherIcon1}.png"/>`));
+                            iconEl1.html($(`<img src="../assets/images/icons/${weatherIcon1}.png"/>`));
 
                             var weatherIcon2= response.daily[2].weather[0].icon;
                             var iconEl2 = $(".weather-icon2");
