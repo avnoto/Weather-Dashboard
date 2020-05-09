@@ -5,6 +5,15 @@ $(document).ready(function() {
     //current day and time displayed on page load
     function doInit() {
         currentDay();
+
+        var city = $("#userInput").val("Sacramento");
+        getWeatherInfo(city);
+        changeTempF(city);
+        changeTempC(city);
+
+        $(city).on("click", function() {
+            $("#userInput").val("");
+        });
     }
     
     //function for retrieving current day and time
@@ -25,21 +34,13 @@ $(document).ready(function() {
 
             $.ajax({
                 url: queryURL,
-                method:"GET", 
-                error: function() {
-                    alert("This is not a valid city.");
-                },
-
-                success: (function () {
-                    $.ajax({
-                        url: queryURL,
-                        method:"GET"
+                method:"GET" 
                 
                     }).then(function(response) {
-                        //console.log(response);
+                        console.log(response);
 
                         $(".speed").text("Speed: " + response.wind.speed + " mph");
-                        $(".direction").text("Direction : " + response.wind.deg + "°");
+                        $(".direction").text("Direction: " + response.wind.deg + "°");
                         $(".humidity").text("Humidity: " + response.main.humidity + "%");
                         $(".cityInfo").text(response.name + ", " + response.sys.country);
                         $(".sunrise").text("Sunrise " + response.sys.sunrise);
@@ -50,7 +51,7 @@ $(document).ready(function() {
                         var tempC = (response.main.temp - 273.15);
                         var feelsLikeTempC = (response.main.feels_like - 273.15);
 
-                    //temperature will be displayed as whole number
+                        //temperature will be displayed as whole number
                         $(".currentTemp").text(tempC.toFixed(0) + "°C");
                         $(".feelsLike").text("Feels like " + feelsLikeTempC.toFixed(0) + "°C");
 
@@ -124,10 +125,6 @@ $(document).ready(function() {
 
 
                         })  
-                    
-                    })
-                    
-                })
             });
     }
 
@@ -146,11 +143,45 @@ $(document).ready(function() {
         changeTempC(inputCity);
 
 
-        //recentSearch();
+        recentSearch();
+
+        let linkArray = $(".nav-link");
+        
+
+        if (linkArray.length > 8) {
+            $(".history a:last-child").remove();
+
+        }
+        $("#userInput").val("");
+
 
      });
 
+     $('#userInput').keypress(function (e) {                                       
+        if (e.which == 13) {
+             e.preventDefault();
 
+             var inputCity = $("#userInput").val().trim();
+
+        getWeatherInfo(inputCity);
+        changeTempF(inputCity);
+        changeTempC(inputCity);
+
+
+        recentSearch();
+
+        let linkArray = $(".nav-link");
+        
+
+        if (linkArray.length > 8) {
+            $(".history a:last-child").remove();
+
+        }
+        $("#userInput").val("");
+               
+        }
+     });
+    
 
      //function for changing the temperature to Fahrenheit when the button is clicked
     function changeTempF() {
@@ -290,48 +321,26 @@ $(document).ready(function() {
 
     }
 
-    //event listener for when recent city is clicked in the sidebar. adds an active state (class of "current")
-    $(".nav-link").on("click", function() {
-        console.log("click");
 
-        var links = $(".nav-link");
+   function recentSearch() {
+    
+        var inputCity = $("#userInput").val().trim();
+        var newLink = $("<a>").addClass("nav-link text-white p-3 mb-2 sidebar-link").text(inputCity);
+        $(newLink).attr("id", "inputCity");
+        $(".history").prepend(newLink);
 
-        for (var i = 0; i < links.length; i++) {
-            $(links[i]).removeClass("current");
-            
-        }
-
-        $(this).addClass("current");
-
-    });
-
-
-    // function recentSearch() {
         
-    //     var link = $(".nav-link");
-    //     var inputCity = $("#userInput").val().trim();
-    //     var newSearch = $(link).text(inputCity);
-    //     var history = $("#history");
+    }
 
-    //     $(inputCity).each(function() {
-            
-    //        var newLink = $(link).clone();
-    //        newLink.text(newSearch).appendTo($(history));
-            
+    function displayDate(data) {
+        let timeStamp = data;
+        let date = new Date(timeStamp * 1000);
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let returnDate = month + "/" + day;
+        return returnDate;
+    }
 
-    //     });
-        
-    // }
-
-function displayDate(data) {
-    let timeStamp = data;
-    let date = new Date(timeStamp * 1000);
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let returnDate = month + "-" + day + "-" + year;
-    return returnDate;
-}
 
 
 });
