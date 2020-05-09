@@ -6,11 +6,13 @@ $(document).ready(function() {
     function doInit() {
         currentDay();
 
+        //default search displaying on page load
         var city = $("#userInput").val("Sacramento");
         getWeatherInfo(city);
         changeTempF(city);
         changeTempC(city);
 
+        //clears search form on click
         $(city).on("click", function() {
             $("#userInput").val("");
         });
@@ -23,7 +25,8 @@ $(document).ready(function() {
     }
 
 
-    //default weather information being retrieved (temp is in Celsius until Fahrenheit button is clicked)
+
+    //weather information being retrieved (temp is in Celsius by default until Fahrenheit button is clicked)
     function getWeatherInfo(city) {
     
         var APIKey = "83161a29ff65cf40e504ac5568f7c577";
@@ -34,19 +37,30 @@ $(document).ready(function() {
 
             $.ajax({
                 url: queryURL,
-                method:"GET" 
+                method:"GET",
+                error: function() {
+                    alert("Please enter a valid location.");
+                    
+                    
+                },
+
+                success: (function () {
+                    $.ajax({
+                        url: queryURL,
+                        method:"GET" 
                 
                     }).then(function(response) {
-                        console.log(response);
 
                         $(".speed").text("Speed: " + response.wind.speed + " mph");
                         $(".direction").text("Direction: " + response.wind.deg + "°");
                         $(".humidity").text("Humidity: " + response.main.humidity + "%");
                         $(".cityInfo").text(response.name + ", " + response.sys.country);
-                        $(".sunrise").text("Sunrise " + response.sys.sunrise);
-                        $(".sunset").text("Sunset " + response.sys.sunset);
                         $(".currentSky").text(response.weather[0].main);
+
                         
+                        $(".sunrise").text(displayTime(response.sys.sunrise));
+                        $(".sunset").text(displayTime(response.sys.sunset));
+
                         //formula for converting Kelvin to Celsius and stored in variables
                         var tempC = (response.main.temp - 273.15);
                         var feelsLikeTempC = (response.main.feels_like - 273.15);
@@ -55,11 +69,12 @@ $(document).ready(function() {
                         $(".currentTemp").text(tempC.toFixed(0) + "°C");
                         $(".feelsLike").text("Feels like " + feelsLikeTempC.toFixed(0) + "°C");
 
-
+                        //weather icon ids in the api's json matches with .png names in icons folder
                         var weatherIcon= response.weather[0].icon;
                         var iconEl = $(".weather-icon");
                         iconEl.html($(`<img src="/assets/images/icons/${weatherIcon}.png"/>`));
 
+                        //grabbing lat and lon coordinates from this api call to use for next api call
                         var latitude = response.coord.lat;
                         var longitude = response.coord.lon;
                     
@@ -72,8 +87,8 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-                            console.log(response);
 
+                            //displayDate function converts api response's dt property into a date
                             $(".date1").text(displayDate(response.daily[1].dt));
                             $(".date2").text(displayDate(response.daily[2].dt));
                             $(".date3").text(displayDate(response.daily[3].dt));
@@ -123,8 +138,10 @@ $(document).ready(function() {
                             $(".low-temp5").text("Low: " + lowTempC5.toFixed(0) + "°C");
                             
 
-
-                        })  
+                        })
+                   
+                    })
+                })  
             });
     }
 
@@ -157,7 +174,8 @@ $(document).ready(function() {
 
      });
 
-     $('#userInput').keypress(function (e) {                                       
+     //prevents page reload on "enter", as well as doing the same function as clicking the search button
+     $("#userInput").keypress(function (e) {                                       
         if (e.which == 13) {
              e.preventDefault();
 
@@ -180,6 +198,7 @@ $(document).ready(function() {
         $("#userInput").val("");
                
         }
+
      });
     
 
@@ -187,6 +206,7 @@ $(document).ready(function() {
     function changeTempF() {
      
         $("#option2").on("click", function() {
+            console.log("click");
 
             var APIKey = "83161a29ff65cf40e504ac5568f7c577";
 
@@ -196,7 +216,8 @@ $(document).ready(function() {
             
                 $.ajax({
                     url: queryURL,
-                    method:"GET"  
+                    method:"GET",
+                     
                 }).then(function(response) {
 
                     //formula for converting Kelvin to Fahrenheit and stored in variables 
@@ -250,7 +271,7 @@ $(document).ready(function() {
 
     }
 
-    //function for changing back to default (Celsius) when button is clicked 
+    //function for changing back to Celsius when button is clicked, otherwise it will stay in fahrenheit temps
     function changeTempC() {
      
         $("#option1").on("click", function() {
@@ -321,7 +342,7 @@ $(document).ready(function() {
 
     }
 
-
+    //prepending new searches to sidebar 
    function recentSearch() {
     
         var inputCity = $("#userInput").val().trim();
@@ -329,6 +350,18 @@ $(document).ready(function() {
         $(newLink).attr("id", "inputCity");
         $(".history").prepend(newLink);
 
+        //adds .current class to a link that is clicked
+        $(".nav-link").on("click", function() {
+
+            var links = $(".nav-link");
+    
+            for (var i = 0; i < links.length; i++) {
+                $(links[i]).removeClass("current");
+    
+            }
+    
+            $(this).addClass("current");
+        });
         
     }
 
@@ -341,8 +374,25 @@ $(document).ready(function() {
         return returnDate;
     }
 
+    function displayTime(data) {
+        let timeStamp = data;
+        let date = new Date(timeStamp*1000);
+        let hour = date.getHours();
+        let minutes = addZero(date.getMinutes());
+        let returnDate = hour + ":" + minutes;
+        return returnDate;
 
+    }
 
+    function addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+      
+
+   
 });
 
 
