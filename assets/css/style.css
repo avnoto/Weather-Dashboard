@@ -122,3 +122,11 @@ transition: all .4s;
 .fa-map-pin {
   font-size: 20px;
 }
+
+.hide {
+  visibility: hidden;
+}
+
+ul {
+  height: 530px;
+}

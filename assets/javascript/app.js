@@ -13,6 +13,7 @@ $(document).ready(function() {
         $("#currentDay").text(currentDay);
     }
 
+
     //default weather information being retrieved (temp is in Celsius until Fahrenheit button is clicked)
     function getWeatherInfo(city) {
     
@@ -21,6 +22,8 @@ $(document).ready(function() {
         var city = $("#userInput").val();
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
+        
 
             $.ajax({
                 url: queryURL,
@@ -45,6 +48,12 @@ $(document).ready(function() {
                 $(".feelsLike").text("Feels like " + feelsLikeTempC.toFixed(0) + "°C");
 
 
+                var weatherIcon= response.weather[0].icon;
+                var iconEl = $(".weather-icon");
+                iconEl.html($(`<img src="/assets/images/icons/${weatherIcon}.png"/>`));
+                
+                
+
             });
     }
 
@@ -62,7 +71,12 @@ $(document).ready(function() {
         changeTempF(inputCity);
         changeTempC(inputCity);
 
+
+        //recentSearch();
+
      });
+
+
 
      //function for changing the temperature to Fahrenheit when the button is clicked
     function changeTempF() {
@@ -142,6 +156,7 @@ $(document).ready(function() {
 
     }
 
+    //event listener for when recent city is clicked in the sidebar. adds an active state (class of "current")
     $(".nav-link").on("click", function() {
         console.log("click");
 
@@ -153,10 +168,32 @@ $(document).ready(function() {
         }
 
         $(this).addClass("current");
+
     });
 
 
+    // function recentSearch() {
+        
+    //     var link = $(".nav-link");
+    //     var inputCity = $("#userInput").val().trim();
+    //     var newSearch = $(link).text(inputCity);
+    //     var history = $("#history");
 
+    //     $(inputCity).each(function() {
+            
+    //        var newLink = $(link).clone();
+    //        newLink.text(newSearch).appendTo($(history));
+            
+
+    //     });
+        
+    // }
 
 
 });
+
+
+
+
+
+
