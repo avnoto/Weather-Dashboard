@@ -8,9 +8,9 @@ $(document).ready(function() {
 
         //default search displaying on page load
         var placeholderCity = $("#userInput").val("Sacramento");
-        getWeatherInfo(placeholderCity);
-        changeTempF(placeholderCity);
-        changeTempC(placeholderCity);
+        getWeatherInfo("Sacramento");
+        changeTempF("Sacramento");
+        changeTempC("Sacramento");
 
         //clears search form on click
         $(placeholderCity).on("click", function() {
@@ -30,8 +30,6 @@ $(document).ready(function() {
     function getWeatherInfo(city) {
     
         var APIKey = "83161a29ff65cf40e504ac5568f7c577";
-
-        var city = $("#userInput").val();
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
@@ -158,7 +156,7 @@ $(document).ready(function() {
         changeTempF(inputCity);
         changeTempC(inputCity);
 
-
+        //currentClass(inputCity);
         recentSearch();
 
         let linkArray = $(".nav-link");
@@ -168,6 +166,7 @@ $(document).ready(function() {
             $(".history a:last-child").remove();
 
         }
+        
 
 
      });
@@ -198,15 +197,16 @@ $(document).ready(function() {
 
      });
     
+     $("#option2").on("click", function() {
+         changeTempF($("#userInput").val());
 
+     });
      //function for changing the temperature to Fahrenheit when the button is clicked
-    function changeTempF() {
+        function changeTempF(city) {
      
-        $("#option2").on("click", function() {
+        
 
             var APIKey = "83161a29ff65cf40e504ac5568f7c577";
-
-            var city = $("#userInput").val();
     
             var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
             
@@ -215,7 +215,7 @@ $(document).ready(function() {
                     method:"GET"
                      
                 }).then(function(response) {
-                    console.log(response);
+                    
 
                     //formula for converting Kelvin to Fahrenheit and stored in variables 
                     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
@@ -236,7 +236,7 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-                            console.log(response);
+                            
 
                             var highTempF1 = (response.daily[1].temp.max - 273.15) * 1.80 + 32;
                             var lowTempF1 = (response.daily[1].temp.min - 273.15) * 1.80 + 32;
@@ -264,18 +264,18 @@ $(document).ready(function() {
      
                 });
 
-            });
+        }
 
-    }
+        $("#option1").on("click", function() {
+            changeTempC($("#userInput").val());
+   
+        });
 
     //function for changing back to Celsius when button is clicked, otherwise it will stay in fahrenheit temps
-    function changeTempC() {
+    function changeTempC(city) {
      
-        $("#option1").on("click", function() {
 
             var APIKey = "83161a29ff65cf40e504ac5568f7c577";
-
-            var city = $("#userInput").val();
     
             var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     
@@ -283,7 +283,7 @@ $(document).ready(function() {
                     url: queryURL,
                     method:"GET"  
                 }).then(function(response) {
-                    console.log(response);
+                    
 
 
                     var tempC = (response.main.temp - 273.15);
@@ -306,7 +306,7 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-                            console.log(response);
+                            
 
                             var highTempC1 = (response.daily[1].temp.max - 273.15);
                             var lowTempC1 = (response.daily[1].temp.min - 273.15);
@@ -333,38 +333,41 @@ $(document).ready(function() {
                         });
      
                 });
-                
-
-            });
 
     }
 
-    //prepending new searches to sidebar 
+
+    $("body").on("click", ".nav-link", function() {
+
+        var links = $(".nav-link");
+
+        for (var i = 0; i < links.length; i++) {
+            $(links[i]).removeClass("current");
+
+        }
+
+        $(this).addClass("current");
+
+        $("#userInput").val($(this).attr("id"));
+
+        getWeatherInfo($(this).attr("id"));
+
+
+    });
+
+    //generating and prepending new searches to sidebar 
    function recentSearch() {
     
         var inputCity = $("#userInput").val().trim();
-        var newLink = $("<a>").addClass("nav-link text-white p-3 mb-2 sidebar-link").text(inputCity);
-        $(newLink).attr("id", "inputCity");
+        var links = $(".nav-link");
+        for (var i = 0; i < links.length; i++) {
+            $(links[i]).removeClass("current");
+
+        }
+        var newLink = $("<a>").addClass("nav-link text-white p-3 mb-2 sidebar-link current").text(inputCity);
+        $(newLink).attr("id", inputCity);
         $(".history").prepend(newLink);
-
-        //adds .current class to a link that is clicked
-        $("body").on("click", ".nav-link", function() {
-
-            
-            
-            var links = $(".nav-link");
-    
-            for (var i = 0; i < links.length; i++) {
-                $(links[i]).removeClass("current");
-    
-            }
-    
-            $(this).addClass("current");
-
-            getWeatherInfo($(this).attr("id"));
-
-
-        });
+       
         
     }
 
@@ -395,11 +398,6 @@ $(document).ready(function() {
       }
       
 
-   
+
+
 });
-
-
-
-
-
-
