@@ -48,9 +48,12 @@ $(document).ready(function() {
                 
                     }).then(function(response) {
 
+                        console.log(response);
+
                         $(".speed").text("Speed: " + response.wind.speed + " mph");
                         $(".direction").text("Direction: " + response.wind.deg + "°");
-                        $(".humidity").text("Humidity: " + response.main.humidity + "%");
+                        $(".humidPercent").text(response.main.humidity + "%");
+                        $(".cloudCover").text(response.clouds.all + "%");
                         $(".cityInfo").text(response.name + ", " + response.sys.country);
                         $(".currentSky").text(response.weather[0].main);
 
