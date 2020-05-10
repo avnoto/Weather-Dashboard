@@ -49,17 +49,64 @@ $(document).ready(function() {
                 
                     }).then(function(response) {
 
-                        console.log(response);
-
                         $(".speed").text("Speed: " + response.wind.speed + " mph");
-                        $(".direction").text("Direction: " + response.wind.deg + "°");
                         $(".humidPercent").text(response.main.humidity + "%");
                         $(".cloudCover").text(response.clouds.all + "%");
                         $(".cityInfo").text(response.name + ", " + response.sys.country);
                         $(".currentSky").text(response.weather[0].main);
-
                         $(".sunrise").text(displayTime(response.sys.sunrise));
                         $(".sunset").text(displayTime(response.sys.sunset));
+
+
+                        //adding corresponding directon of wind with degrees
+                        if (response.wind.deg > 348.75 && response.wind.deg < 11.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (N)");
+                        } 
+                        if (response.wind.deg > 11.25 && response.wind.deg < 33.35) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (NNE)");
+                        } 
+                        if (response.wind.deg > 33.75 && response.wind.deg < 56.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (NE)");
+                        } 
+                        if (response.wind.deg > 56.25 && response.wind.deg < 78.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (ENE)");
+                        } 
+                        if (response.wind.deg > 78.75 && response.wind.deg < 101.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (E)");
+                        } 
+                        if (response.wind.deg > 101.25 && response.wind.deg < 123.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (ESE)");
+                        } 
+                        if (response.wind.deg > 123.75 && response.wind.deg < 146.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (SE)");
+                        } 
+                        if (response.wind.deg > 146.25 && response.wind.deg < 168.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (SSE)");
+                        } 
+                        if (response.wind.deg > 168.75 && response.wind.deg < 191.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (S)");
+                        } 
+                        if (response.wind.deg > 191.25 && response.wind.deg < 213.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (SSW)");
+                        } 
+                        if (response.wind.deg > 213.75 && response.wind.deg < 236.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (SW)");
+                        } 
+                        if (response.wind.deg > 236.25 && response.wind.deg < 258.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (WSW)");
+                        } 
+                        if (response.wind.deg > 258.75 && response.wind.deg < 281.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (W)");
+                        } 
+                        if (response.wind.deg > 281.25 && response.wind.deg < 303.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (WNW)");
+                        } 
+                        if (response.wind.deg > 303.75 && response.wind.deg < 326.25) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (NW)");
+                        } 
+                        if (response.wind.deg > 326.25 && response.wind.deg < 348.75) {
+                            $(".direction").text("Direction: " + response.wind.deg + "° " + " (NNW)");
+                        } 
 
                         //formula for converting Kelvin to Celsius and stored in variables
                         var tempC = (response.main.temp - 273.15);
@@ -87,7 +134,7 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-                            console.log(response);
+                            
                             //displayDate function converts api response's dt property into a date
                             $(".date1").text(displayDate(response.daily[1].dt));
                             $(".date2").text(displayDate(response.daily[2].dt));
@@ -95,34 +142,37 @@ $(document).ready(function() {
                             $(".date4").text(displayDate(response.daily[4].dt));
                             $(".date5").text(displayDate(response.daily[5].dt));
 
+                            //adding uv classifications with corresponding index and colors for indication
                             if (response.current.uvi < 3.0) {
-                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "green");
+                                $(".uvIndex").text("UV Index: " + response.current.uvi);
                                 $(".uvIndex-classification").text(" (Low)").css("color", "green");
 
                             } if (response.current.uvi >= 3.0 && response.current.uvi < 6.0 ) {
-                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "yellow");
-                                $(".uvIndex-classification").text(" (Moderate)").css("color", "yellow");
+                                $(".uvIndex").text("UV Index: " + response.current.uvi);
+                                $(".uvIndex-classification").text(" (Moderate)").css("color", "#FFCC00");
 
                             } if (response.current.uvi > 6.0 && response.current.uvi < 8.0 ) {
-                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "orange");
+                                $(".uvIndex").text("UV Index: " + response.current.uvi);
                                 $(".uvIndex-classification").text(" (High)").css("color", "orange");
 
                             } if (response.current.uvi > 8.0 && response.current.uvi < 11.0 ) {
-                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "red");
+                                $(".uvIndex").text("UV Index: " + response.current.uvi);
                                 $(".uvIndex-classification").text(" (Very High)").css("color", "red"); {
 
                             } if (response.current.uvi > 11.0 ) {
-                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "purple");
+                                $(".uvIndex").text("UV Index: " + response.current.uvi);
                                 $(".uvIndex-classification").text(" (Extremely High)").css("color", "purple");
                             }
                             }
 
+                            //displaying humidity for each day in 5 day forecast
                             $(".humid1").text("Humidity: " + response.daily[1].humidity + "%");
                             $(".humid2").text("Humidity: " + response.daily[2].humidity + "%");
                             $(".humid3").text("Humidity: " + response.daily[3].humidity + "%");
                             $(".humid4").text("Humidity: " + response.daily[4].humidity + "%");
                             $(".humid5").text("Humidity: " + response.daily[5].humidity + "%");
 
+                            //icon Ids in object match with icons pngs in icons folder
                             var weatherIcon1= response.daily[1].weather[0].icon;
                             var iconEl1 = $(".weather-icon1");
                             iconEl1.html($(`<img src="./assets/images/icons/${weatherIcon1}.png"/>`));
@@ -229,10 +279,12 @@ $(document).ready(function() {
 
      });
     
+     //getting the Fahrenheit temperature when the button is clicked based on the search box's value
      $("#option2").on("click", function() {
          changeTempF($("#userInput").val());
 
      });
+
      //function for changing the temperature to Fahrenheit when the button is clicked
         function changeTempF(city) {
      
@@ -298,10 +350,11 @@ $(document).ready(function() {
 
         }
 
-        $("#option1").on("click", function() {
+    //getting the Celsius temperature when the button is clicked based on the search box's value
+    $("#option1").on("click", function() {
             changeTempC($("#userInput").val());
    
-        });
+    });
 
     //function for changing back to Celsius when button is clicked, otherwise it will stay in fahrenheit temps
     function changeTempC(city) {
@@ -368,7 +421,7 @@ $(document).ready(function() {
 
     }
 
-
+    //function for adding class of "current" to nav links when the specific link is clicked
     $("body").on("click", ".nav-link", function() {
 
         var links = $(".nav-link");
@@ -403,6 +456,7 @@ $(document).ready(function() {
         
     }
 
+    //converting the json date to regular date format
     function displayDate(data) {
         let timeStamp = data;
         let date = new Date(timeStamp * 1000);
@@ -412,6 +466,7 @@ $(document).ready(function() {
         return returnDate;
     }
 
+    //coverting the json time to regular time format 
     function displayTime(data) {
         let timeStamp = data;
         let date = new Date(timeStamp*1000);
@@ -422,6 +477,7 @@ $(document).ready(function() {
 
     }
 
+    //if minutes for sunrise/sunset time returns a single digit, add a zero before it
     function addZero(i) {
         if (i < 10) {
           i = "0" + i;
