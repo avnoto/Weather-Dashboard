@@ -15,6 +15,7 @@ $(document).ready(function() {
         //clears search form on click
         $(placeholderCity).on("click", function() {
             $("#userInput").val("");
+            $(".error").text("");
         });
     }
     
@@ -37,7 +38,7 @@ $(document).ready(function() {
                 url: queryURL,
                 method:"GET",
                 error: function() {
-                    alert("Please enter a valid location."); 
+                    $(".error").text("Please enter a valid location."); 
                     
                 },
 
