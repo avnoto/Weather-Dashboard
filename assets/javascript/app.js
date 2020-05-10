@@ -57,7 +57,6 @@ $(document).ready(function() {
                         $(".cityInfo").text(response.name + ", " + response.sys.country);
                         $(".currentSky").text(response.weather[0].main);
 
-                        
                         $(".sunrise").text(displayTime(response.sys.sunrise));
                         $(".sunset").text(displayTime(response.sys.sunset));
 
@@ -87,13 +86,41 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-
+                            console.log(response);
                             //displayDate function converts api response's dt property into a date
                             $(".date1").text(displayDate(response.daily[1].dt));
                             $(".date2").text(displayDate(response.daily[2].dt));
                             $(".date3").text(displayDate(response.daily[3].dt));
                             $(".date4").text(displayDate(response.daily[4].dt));
                             $(".date5").text(displayDate(response.daily[5].dt));
+
+                            if (response.current.uvi < 3.0) {
+                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "green");
+                                $(".uvIndex-classification").text(" (Low)").css("color", "green");
+
+                            } if (response.current.uvi >= 3.0 && response.current.uvi < 6.0 ) {
+                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "yellow");
+                                $(".uvIndex-classification").text(" (Moderate)").css("color", "yellow");
+
+                            } if (response.current.uvi > 6.0 && response.current.uvi < 8.0 ) {
+                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "orange");
+                                $(".uvIndex-classification").text(" (High)").css("color", "orange");
+
+                            } if (response.current.uvi > 8.0 && response.current.uvi < 11.0 ) {
+                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "red");
+                                $(".uvIndex-classification").text(" (Very High)").css("color", "red"); {
+
+                            } if (response.current.uvi > 11.0 ) {
+                                $(".uvIndex").text("UV Index: " + response.current.uvi).css("color", "purple");
+                                $(".uvIndex-classification").text(" (Extremely High)").css("color", "purple");
+                            }
+                            }
+
+                            $(".humid1").text("Humidity: " + response.daily[1].humidity + "%");
+                            $(".humid2").text("Humidity: " + response.daily[2].humidity + "%");
+                            $(".humid3").text("Humidity: " + response.daily[3].humidity + "%");
+                            $(".humid4").text("Humidity: " + response.daily[4].humidity + "%");
+                            $(".humid5").text("Humidity: " + response.daily[5].humidity + "%");
 
                             var weatherIcon1= response.daily[1].weather[0].icon;
                             var iconEl1 = $(".weather-icon1");
@@ -136,11 +163,12 @@ $(document).ready(function() {
                             $(".low-temp4").text("Low: " + lowTempC4.toFixed(0) + "°C");
                             $(".high-temp5").text("High: " + highTempC5.toFixed(0) + "°C");
                             $(".low-temp5").text("Low: " + lowTempC5.toFixed(0) + "°C");
+
                             
 
                         })
                    
-                    })
+                    });
                 })  
             });
     }
