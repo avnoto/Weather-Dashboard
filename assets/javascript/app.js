@@ -7,13 +7,13 @@ $(document).ready(function() {
         currentDay();
 
         //default search displaying on page load
-        var city = $("#userInput").val("Sacramento");
-        getWeatherInfo(city);
-        changeTempF(city);
-        changeTempC(city);
+        var placeholderCity = $("#userInput").val("Sacramento");
+        getWeatherInfo(placeholderCity);
+        changeTempF(placeholderCity);
+        changeTempC(placeholderCity);
 
         //clears search form on click
-        $(city).on("click", function() {
+        $(placeholderCity).on("click", function() {
             $("#userInput").val("");
         });
     }
@@ -39,8 +39,7 @@ $(document).ready(function() {
                 url: queryURL,
                 method:"GET",
                 error: function() {
-                    alert("Please enter a valid location.");
-                    
+                    alert("Please enter a valid location."); 
                     
                 },
 
@@ -169,7 +168,6 @@ $(document).ready(function() {
             $(".history a:last-child").remove();
 
         }
-        $("#userInput").val("");
 
 
      });
@@ -177,25 +175,24 @@ $(document).ready(function() {
      //prevents page reload on "enter", as well as doing the same function as clicking the search button
      $("#userInput").keypress(function (e) {                                       
         if (e.which == 13) {
-             e.preventDefault();
+            e.preventDefault();
 
              var inputCity = $("#userInput").val().trim();
 
-        getWeatherInfo(inputCity);
-        changeTempF(inputCity);
-        changeTempC(inputCity);
+            getWeatherInfo(inputCity);
+            changeTempF(inputCity);
+            changeTempC(inputCity);
 
 
-        recentSearch();
+            recentSearch();
 
-        let linkArray = $(".nav-link");
+            let linkArray = $(".nav-link");
         
 
-        if (linkArray.length > 8) {
+            if (linkArray.length > 8) {
             $(".history a:last-child").remove();
 
-        }
-        $("#userInput").val("");
+            }
                
         }
 
@@ -206,7 +203,6 @@ $(document).ready(function() {
     function changeTempF() {
      
         $("#option2").on("click", function() {
-            console.log("click");
 
             var APIKey = "83161a29ff65cf40e504ac5568f7c577";
 
@@ -216,9 +212,10 @@ $(document).ready(function() {
             
                 $.ajax({
                     url: queryURL,
-                    method:"GET",
+                    method:"GET"
                      
                 }).then(function(response) {
+                    console.log(response);
 
                     //formula for converting Kelvin to Fahrenheit and stored in variables 
                     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
@@ -239,7 +236,7 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-
+                            console.log(response);
 
                             var highTempF1 = (response.daily[1].temp.max - 273.15) * 1.80 + 32;
                             var lowTempF1 = (response.daily[1].temp.min - 273.15) * 1.80 + 32;
@@ -309,7 +306,7 @@ $(document).ready(function() {
                             method:"GET"
                     
                         }).then(function(response) {
-
+                            console.log(response);
 
                             var highTempC1 = (response.daily[1].temp.max - 273.15);
                             var lowTempC1 = (response.daily[1].temp.min - 273.15);
@@ -351,8 +348,10 @@ $(document).ready(function() {
         $(".history").prepend(newLink);
 
         //adds .current class to a link that is clicked
-        $(".nav-link").on("click", function() {
+        $("body").on("click", ".nav-link", function() {
 
+            
+            
             var links = $(".nav-link");
     
             for (var i = 0; i < links.length; i++) {
@@ -361,6 +360,10 @@ $(document).ready(function() {
             }
     
             $(this).addClass("current");
+
+            getWeatherInfo($(this).attr("id"));
+
+
         });
         
     }
