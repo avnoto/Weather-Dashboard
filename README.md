@@ -29,10 +29,10 @@ Weather information for the current day/time being retrieved is as follows:
 - Icon to represent description
 - Humidity (%)
 - Cloud Cover (%)
--Sunrise/Sunset times
+- Sunrise/Sunset times
 - Wind speed
 - Wind direction (degrees and compass direction)
--UV index and classification
+- UV index and classification
 
 Weather information for future days being retrieved is as follows (5 day forecast):
 
