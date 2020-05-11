@@ -15,7 +15,7 @@ The site is published at https://avnoto.github.io/Weather-Dashboard/.
 
 ## Usage
 
-
+<img src="assets\images\weather-app-scrnshot.png" alt="Screenshot of Dashboard">
 
 The application can search any city that is defined and has information for by OpenWeatherMap, and get current and future (5 day forecast) weather conditions. Users' recent searches are appended to the sidebar. When a city is clicked in the recent searches, they will be able to retrieve the conditions for that city again. 
 
